@@ -4,11 +4,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import com.google.protobuf.Message;
 
 public class HibernateUtil {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
-
+	
+	/*
 	// Hibernate 5:
 	private static SessionFactory buildSessionFactory() {
 		try {
@@ -20,12 +24,21 @@ public class HibernateUtil {
 
 			return metadata.getSessionFactoryBuilder().build();
 		} catch (Throwable ex) {
-
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
-
+	*/
+	private static SessionFactory buildSessionFactory() {
+		try { 
+			System.out.println("Try HibernateUtil");
+			return new Configuration().addAnnotatedClass(Message.class).configure().buildSessionFactory();  
+		} catch (Throwable ex) {  
+			System.err.println("Initial SessionFactory creation failed." + ex);  
+			throw new ExceptionInInitializerError(ex);  
+		}
+	}
+	
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

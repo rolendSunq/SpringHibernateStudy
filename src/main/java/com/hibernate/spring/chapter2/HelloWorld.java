@@ -37,6 +37,19 @@ public class HelloWorld {
 		newTransaction.commit();
 		newSession.close();
 		
+		// 세 번째 작업 단위
+		Session thirdSession  = HibernateUtil.getSessionFactory().openSession();
+		Transaction thirdTtansaction = thirdSession.beginTransaction();
+		
+		// msgId는 첫 번째 메시지의 식별자 값을 담고 있다.
+		message = (Message) thirdSession.get(Message.class, msgId);
+		
+		message.setText("Greetings Earthling");
+		message.setNextMessage(new Message("Take me to your leader (please)"));
+		
+		thirdTtansaction.commit();
+		thirdSession.close();
+		
 		// 애플리케이션 종료
 		HibernateUtil.shutdown();
 	}

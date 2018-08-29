@@ -26,6 +26,16 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.entitymanager.version}</version>
 		</dependency>
+		
+		<!-- hibernate-commons-annotations -->
+		<!-- 
+		<dependency>
+		    <groupId>org.hibernate.common</groupId>
+		    <artifactId>hibernate-commons-annotations</artifactId>
+		    <version>5.0.4.Final</version>
+		</dependency>
+		 -->
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

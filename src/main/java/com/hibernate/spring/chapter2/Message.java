@@ -1,22 +1,36 @@
 package com.hibernate.spring.chapter2;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "MESSAGES")
 public class Message {
-	// 식별자 속성
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MESSAGE_ID")
 	private Long id;
 	
-	// 메시지 텍스트
+	@Column(name = "MESSAGE_TEXT")
 	private String text;
 	
-	// 다른 Message 인스턴스에 대한 참조
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(foreignKey = @ForeignKey(name = "NEXT_MESSAGE_ID"))
 	private Message nextMessage;
-
+	
 	public Message() {
 		// empty
 	}
-	
+
 	public Message(String text) {
 		this.text = text;
 	}
@@ -44,7 +58,14 @@ public class Message {
 	public void setNextMessage(Message nextMessage) {
 		this.nextMessage = nextMessage;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return new StringBuffer().append("Message [id=").append(id)
+				.append(", text=").append(text)
+				.append(", nextMessage=").append(nextMessage)
+				.append("]").toString();
+	}
+	
+	
 }
