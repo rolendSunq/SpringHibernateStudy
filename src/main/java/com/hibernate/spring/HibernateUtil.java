@@ -1,34 +1,29 @@
 package com.hibernate.spring;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-
-import com.google.protobuf.Message;
 
 public class HibernateUtil {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 	
-	/*
 	// Hibernate 5:
 	private static SessionFactory buildSessionFactory() {
+		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+				.configure("hibernate.cfg.xml") // configures settings from hibernate.cfg.xml
+				.build();
+		
 		try {
-			// Create the ServiceRegistry from hibernate.cfg.xml
-			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-
-			// Create a metadata sources using the specified service registry.
-			Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
-
-			return metadata.getSessionFactoryBuilder().build();
+			 return new MetadataSources(registry).buildMetadata().buildSessionFactory();
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
+			StandardServiceRegistryBuilder.destroy(registry);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
-	*/
+	
+	/*
 	private static SessionFactory buildSessionFactory() {
 		try { 
 			System.out.println("Try HibernateUtil");
@@ -38,7 +33,7 @@ public class HibernateUtil {
 			throw new ExceptionInInitializerError(ex);  
 		}
 	}
-	
+	*/
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
