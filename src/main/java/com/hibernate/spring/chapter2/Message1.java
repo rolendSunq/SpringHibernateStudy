@@ -1,9 +1,6 @@
 package com.hibernate.spring.chapter2;
 
-import javax.persistence.Entity;
-
-@Entity
-public class Message_ {
+public class Message1 {
 	// 식별자 속성
 	private Long id;
 	
@@ -11,13 +8,13 @@ public class Message_ {
 	private String text;
 	
 	// 다른 Message 인스턴스에 대한 참조
-	private Message_ nextMessage;
+	private Message1 nextMessage;
 
-	public Message_() {
+	public Message1() {
 		// empty
 	}
 	
-	public Message_(String text) {
+	public Message1(String text) {
 		this.text = text;
 	}
 
@@ -37,11 +34,11 @@ public class Message_ {
 		this.text = text;
 	}
 
-	public Message_ getNextMessage() {
+	public Message1 getNextMessage() {
 		return nextMessage;
 	}
 
-	public void setNextMessage(Message_ nextMessage) {
+	public void setNextMessage(Message1 nextMessage) {
 		this.nextMessage = nextMessage;
 	}
 	

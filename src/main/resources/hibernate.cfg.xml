@@ -18,6 +18,12 @@
         <!-- manage automatic database creation -->
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 		
+		<!-- Simple memory-only cache -->  
+     	<property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>  
+   
+      	<!-- Enable Hibernate's automatic session context management -->  
+      	<property name="current_session_context_class">thread</property>  
+   
 		<!-- 
         <mapping resource="Message.hbm.xml"/>
 		 -->
