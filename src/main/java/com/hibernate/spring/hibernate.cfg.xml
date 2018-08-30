@@ -27,9 +27,9 @@
 		<!-- 
         <mapping resource="Message.hbm.xml"/>
 		 -->
-		<!-- 
 		<mapping package="com.hibernate.spring.*"/>
-		 -->
+		<!-- 
 		<mapping class="com.hibernate.spring.chapter2.Message"/>
+		 -->
     </session-factory>
 </hibernate-configuration>
